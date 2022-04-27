@@ -1,0 +1,12 @@
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak\FMSILibrary\bin\Debug\net6.0\FMSILibrary.deps.json
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak\FMSILibrary\bin\Debug\net6.0\FMSILibrary.dll
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak\FMSILibrary\bin\Debug\net6.0\FMSILibrary.pdb
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak\FMSILibrary\obj\Debug\net6.0\FMSILibrary.csproj.AssemblyReference.cache
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak\FMSILibrary\obj\Debug\net6.0\FMSILibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak\FMSILibrary\obj\Debug\net6.0\FMSILibrary.AssemblyInfoInputs.cache
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak\FMSILibrary\obj\Debug\net6.0\FMSILibrary.AssemblyInfo.cs
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak\FMSILibrary\obj\Debug\net6.0\FMSILibrary.csproj.CoreCompileInputs.cache
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak\FMSILibrary\obj\Debug\net6.0\FMSILibrary.dll
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak\FMSILibrary\obj\Debug\net6.0\refint\FMSILibrary.dll
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak\FMSILibrary\obj\Debug\net6.0\FMSILibrary.pdb
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak\FMSILibrary\obj\Debug\net6.0\ref\FMSILibrary.dll
