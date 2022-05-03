@@ -102,7 +102,8 @@ namespace FMSILibrary {
 
                 foreach(var pair in potentiallyEquivStates) {
                     foreach(char symbol in alphabet) {
-                        if(nonEquivStates.Contains((delta[(pair.Item1, symbol)], delta[(pair.Item2, symbol)]))) {
+                        if( nonEquivStates.Contains((delta[(pair.Item1, symbol)], delta[(pair.Item2, symbol)])) ||
+                            nonEquivStates.Contains((delta[(pair.Item2, symbol)], delta[(pair.Item1, symbol)]))) {
                             nonEquivStates.Add(pair);
                             potentiallyEquivStates.Remove(pair);
                         }
@@ -179,6 +180,37 @@ namespace FMSILibrary {
                     startState = state;
             }
             delta = tempDelta;
+
+            // izbacivanje suvisnih prelaza (duplikati) (isti prelazi su iz q3q6q7 i q7q3q6)
+            Dictionary<(string, char), string> tempDelta2 = new();
+            foreach(var entry1 in delta) {
+                if(!alreadyInDelta(entry1.Key.Item1, entry1.Key.Item2, tempDelta2)) {
+                    tempDelta2[entry1.Key] = entry1.Value;
+                }
+            }
+            delta = tempDelta2;
+
+            // foreach(var entry in delta) {
+            //     Console.WriteLine();
+            //     Console.WriteLine(entry.Key.Item1 + ",  " + entry.Key.Item2 + " -> " + entry.Value);
+            // }
+        }
+        private bool sameState(string str1, string str2) {
+            char[] first = str1.ToArray();
+            char[] second = str2.ToArray();
+            Array.Sort(first);
+            Array.Sort(second);
+            string newStr1 = new string(first);
+            string newStr2 = new string(second);
+            return newStr1 == newStr2;
+        }
+        private bool alreadyInDelta(string str, char symbol, Dictionary<(string, char), string> tempDelta2) {
+            bool flag = false;
+            foreach(var entry in tempDelta2) {
+                if(sameState(str, entry.Key.Item1) && symbol == entry.Key.Item2)
+                    flag = true;
+            }
+            return flag;
         }
     }
 }
