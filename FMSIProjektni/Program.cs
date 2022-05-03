@@ -30,6 +30,13 @@
 // testDfaBig.AddFinalState("q4");
 // testDfaBig.AddFinalState("q8");
 
+// ENfa eNfatest = testDfaBig.convertToENfa();
+
+// Console.WriteLine(eNfatest.Accepts("baaba"));
+// Console.WriteLine(eNfatest.Accepts("baabab"));
+// Console.WriteLine(eNfatest.Accepts("baaaa"));
+// Console.WriteLine(eNfatest.Accepts("babaabb"));
+
 // Console.WriteLine(testDfaBig.Accepts("baaba"));
 // Console.WriteLine(testDfaBig.Accepts("baabab"));
 // Console.WriteLine(testDfaBig.Accepts("baaaa"));
@@ -43,6 +50,8 @@
 // Console.WriteLine(testDfaBig.Accepts("baabab"));
 // Console.WriteLine(testDfaBig.Accepts("baaaa"));
 // Console.WriteLine(testDfaBig.Accepts("babaabb"));
+
+
 
 
 // Dfa testDfa = new();
@@ -85,6 +94,9 @@ testENfa.AddTransition("q5", '$', new HashSet<string>{"q0"});
 testENfa.AddFinalState("q1");
 testENfa.AddFinalState("q6");
 
-Console.WriteLine(testENfa.Accepts("b"));
-Console.WriteLine(testENfa.Accepts("a"));
-Console.WriteLine(testENfa.Accepts("ab"));
+
+//testENfa.ConvertToDfa();
+
+// Console.WriteLine(testENfa.Accepts("b"));
+// Console.WriteLine(testENfa.Accepts("a"));
+// Console.WriteLine(testENfa.Accepts("ab"));

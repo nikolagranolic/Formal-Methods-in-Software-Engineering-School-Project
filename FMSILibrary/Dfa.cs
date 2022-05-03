@@ -36,6 +36,9 @@ namespace FMSILibrary {
         public void AddFinalState(string state) {
             finalStates.Add(state);
         }
+        public void AddState(string state) {
+            allStates.Add(state);
+        }
         //metoda koja vrsi tranzicije od zadate rijeci simbol po simbol pocevsi od pocetnog stanja
         //i vraca bool kao indikator pripadnosti date rijeci jeziku koji automat opisuje
         public bool Accepts(string input) {
@@ -184,7 +187,7 @@ namespace FMSILibrary {
             // izbacivanje suvisnih prelaza (duplikati) (isti prelazi su iz q3q6q7 i q7q3q6)
             Dictionary<(string, char), string> tempDelta2 = new();
             foreach(var entry1 in delta) {
-                if(!alreadyInDelta(entry1.Key.Item1, entry1.Key.Item2, tempDelta2)) {
+                if(!AlreadyInDelta(entry1.Key.Item1, entry1.Key.Item2, tempDelta2)) {
                     tempDelta2[entry1.Key] = entry1.Value;
                 }
             }
@@ -195,7 +198,7 @@ namespace FMSILibrary {
             //     Console.WriteLine(entry.Key.Item1 + ",  " + entry.Key.Item2 + " -> " + entry.Value);
             // }
         }
-        private bool sameState(string str1, string str2) {
+        private bool SameState(string str1, string str2) {
             char[] first = str1.ToArray();
             char[] second = str2.ToArray();
             Array.Sort(first);
@@ -204,13 +207,25 @@ namespace FMSILibrary {
             string newStr2 = new string(second);
             return newStr1 == newStr2;
         }
-        private bool alreadyInDelta(string str, char symbol, Dictionary<(string, char), string> tempDelta2) {
+        private bool AlreadyInDelta(string str, char symbol, Dictionary<(string, char), string> tempDelta2) {
             bool flag = false;
             foreach(var entry in tempDelta2) {
-                if(sameState(str, entry.Key.Item1) && symbol == entry.Key.Item2)
+                if(SameState(str, entry.Key.Item1) && symbol == entry.Key.Item2)
                     flag = true;
             }
             return flag;
+        }
+
+        public ENfa ConvertToENfa() {
+            ENfa eNfa = new();
+            foreach(var entry in delta) {
+                eNfa.AddTransition(entry.Key.Item1, entry.Key.Item2, new HashSet<string>{entry.Value});
+            }
+            foreach(var finalState in finalStates) {
+                eNfa.AddFinalState(finalState);
+            }
+            eNfa.SetStartState(startState);
+            return eNfa;
         }
     }
 }
