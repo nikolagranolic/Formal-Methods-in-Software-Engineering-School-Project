@@ -4,45 +4,17 @@ namespace FMSILibrary {
         private HashSet<string> finalStates = new();
         private HashSet<string> startState = new();
         private HashSet<string> currentState = new();
-        public void AddTransition(string currentState, char symbol) {
-            HashSet<string> nextState = new();
-            int nextStateNum;
-            string temp;
-            Console.WriteLine(currentState + " for symbol " + symbol + ":");
-            Console.WriteLine("How many states are in the next state?");
-            nextStateNum = int.Parse(Console.ReadLine());
-            Console.WriteLine("Adding states...");
-            for(int i = 1; i <= nextStateNum; i++) {
-                Console.Write("State " + 1 + ":");
-                temp = Console.ReadLine();
-                nextState.Add(temp);
-            }
-
+        public void AddTransition(string currentState, char symbol, HashSet<string> nextState) {
             delta[(currentState, symbol)] = nextState;
-            Console.WriteLine();
         }
-        public void SetStartState() {
-            HashSet<string> state = new();
-            int stateNum;
-            string temp;
-
-            Console.WriteLine("How many states are in the start state?");
-            stateNum = int.Parse(Console.ReadLine());
-            Console.WriteLine("Adding states...");
-            for(int i = 1; i <= stateNum; i++) {
-                Console.Write("State " + i + ":");
-                temp = Console.ReadLine();
-                state.Add(temp);
-            }
-
-            startState = state;
+        public void SetStartState(string state) {
+            startState.Add(state);
         }
         public void AddFinalState(string state) {
             finalStates.Add(state);
         }
         public bool Accepts(string input) {
-            currentState = EpsilonClosure(startState);
-            
+            currentState = EpsilonClosure(startState);    
             foreach(var symbol in input) {
                 HashSet<string> temp = new();
 
