@@ -44,7 +44,8 @@ namespace FMSILibrary {
         public bool Accepts(string input) {
             var currentState = startState;
             foreach(var symbol in input) {
-                currentState = delta[(currentState, symbol)];
+                if(delta.ContainsKey((currentState, symbol))) // dodano
+                    currentState = delta[(currentState, symbol)];
             }
             return finalStates.Contains(currentState);
         }
@@ -105,11 +106,19 @@ namespace FMSILibrary {
 
                 foreach(var pair in potentiallyEquivStates) {
                     foreach(char symbol in alphabet) {
-                        if( nonEquivStates.Contains((delta[(pair.Item1, symbol)], delta[(pair.Item2, symbol)])) ||
-                            nonEquivStates.Contains((delta[(pair.Item2, symbol)], delta[(pair.Item1, symbol)]))) {
+                        if(delta.ContainsKey((pair.Item1, symbol)) && delta.ContainsKey((pair.Item2, symbol)) && nonEquivStates.Contains((delta[(pair.Item1, symbol)], delta[(pair.Item2, symbol)]))) {
                             nonEquivStates.Add(pair);
                             potentiallyEquivStates.Remove(pair);
                         }
+                        else if(delta.ContainsKey((pair.Item2, symbol)) && delta.ContainsKey((pair.Item1, symbol)) && nonEquivStates.Contains((delta[(pair.Item2, symbol)], delta[(pair.Item1, symbol)]))) {
+                            nonEquivStates.Add(pair);
+                            potentiallyEquivStates.Remove(pair);
+                        }
+                        // if( nonEquivStates.Contains((delta[(pair.Item1, symbol)], delta[(pair.Item2, symbol)])) ||
+                        //     nonEquivStates.Contains((delta[(pair.Item2, symbol)], delta[(pair.Item1, symbol)]))) {
+                        //     nonEquivStates.Add(pair);
+                        //     potentiallyEquivStates.Remove(pair);
+                        // }
                     }
                 }
 
@@ -160,7 +169,8 @@ namespace FMSILibrary {
                 }
                 namedEquivStates.Add(temp);
                 foreach(char symbol in alphabet) {
-                    tempDelta[(temp, symbol)] = delta[(temp1, symbol)];
+                    if(delta.ContainsKey((temp1, symbol))) // dodano
+                        tempDelta[(temp, symbol)] = delta[(temp1, symbol)];
                 }
             }
 

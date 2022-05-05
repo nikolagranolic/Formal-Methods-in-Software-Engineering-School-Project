@@ -94,9 +94,18 @@ testENfa.AddTransition("q5", '$', new HashSet<string>{"q0"});
 testENfa.AddFinalState("q1");
 testENfa.AddFinalState("q6");
 
+Console.WriteLine(testENfa.Accepts("b"));
+Console.WriteLine(testENfa.Accepts("a"));
+Console.WriteLine(testENfa.Accepts("ab"));
+Console.WriteLine(testENfa.Accepts("aaa"));
+Console.WriteLine(testENfa.Accepts("abab"));
+Console.WriteLine(testENfa.Accepts("aabb"));
+Dfa convertedDfa = testENfa.ConvertToDfa();
 
-//testENfa.ConvertToDfa();
-
-// Console.WriteLine(testENfa.Accepts("b"));
-// Console.WriteLine(testENfa.Accepts("a"));
-// Console.WriteLine(testENfa.Accepts("ab"));
+Console.WriteLine();
+Console.WriteLine(convertedDfa.Accepts("b"));
+Console.WriteLine(convertedDfa.Accepts("a"));
+Console.WriteLine(convertedDfa.Accepts("ab"));
+Console.WriteLine(convertedDfa.Accepts("aaa"));
+Console.WriteLine(convertedDfa.Accepts("abab"));
+Console.WriteLine(convertedDfa.Accepts("aabb"));

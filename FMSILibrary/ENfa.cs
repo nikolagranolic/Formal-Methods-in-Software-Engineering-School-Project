@@ -9,7 +9,8 @@ namespace FMSILibrary {
         private HashSet<string> allStates = new();
         private HashSet<char> alphabet = new();
         public void AddTransition(string currentState, char symbol, HashSet<string> nextState) {
-            alphabet.Add(symbol);
+            if(symbol != '$')
+                    alphabet.Add(symbol);
             delta[(currentState, symbol)] = nextState;
             allStates.Add(currentState);
             foreach(string state in nextState)
@@ -85,24 +86,64 @@ namespace FMSILibrary {
                 }
                 powerSet.Add(new HashSet<string>(temp));
             }
+            temp.Clear();
+            string tempStr1 = "", tempStr2 = "";
             // dodavanje elemenata partitivnog skupa u skup stanja DKA
-            // string tempStr = "";
-            // foreach(var set in powerSet) {
-            //     foreach(var st in set) {
-            //         tempStr += st;
+            foreach(var entry in powerSet) {
+                foreach(char symbol in alphabet) {
+                    tempStr1 = ""; tempStr2 = "";
+                    temp = FromSetForSymbolToSet(entry, symbol);
+                    // foreach(var str in entry)
+                    //     Console.Write(str + " ");
+                    // Console.Write(", " + symbol + " --> ");
+                    // foreach(var str in temp)
+                    //     Console.Write(str + " ");
+                    // Console.WriteLine();
+                    foreach(var state in entry)
+                        tempStr1 += state;
+                    foreach(var state in temp)
+                        tempStr2 += state;
+                    // provjera da li je entry finalno stanje, ako jeste dodajemo ga u skup finalnih stanja
+                    HashSet<string> intersect = new(entry);
+                    intersect.IntersectWith(entry);
+                    if(intersect.Count > 0) {
+                        dfa.AddFinalState(tempStr1);
+                    }
+                    dfa.AddState(tempStr1);
+                    dfa.AddTransition(tempStr1, symbol, tempStr2);
+                    tempStr1 = ""; tempStr2 = "";
+                }
+            }
+            // temp.Clear();
+            // foreach(var entry in powerSet) {
+            //     foreach(char symbol in alphabet) {
+            //         string tempStr1 = "", tempstr2 = "";
+            //         temp = FromSetForSymbolToSet(entry, symbol);
+        
+            //         foreach(var state in entry)
+            //             tempStr1 += state;
+            //         foreach(var state in temp)
+            //             tempstr2 += state;
+            //         // provjera da li je entry finalno stanje, ako jeste dodajemo ga u skup finalnih stanja
+            //         HashSet<string> intersect = new(entry);
+            //         intersect.IntersectWith(entry);
+            //         if(intersect.Count > 0) {
+            //             dfa.AddFinalState(tempStr1);
+            //         }
+            //         dfa.AddState(tempStr1);
+            //         dfa.AddTransition(tempStr1, symbol, tempstr2);
+            //         tempStr1 = ""; tempstr2 = "";
             //     }
-            //     dfa.AddState(tempStr);
-            //     tempStr = "";
             // }
-
-
-            return null; // PROMIJENITI NA KRAJU KAD ZAVRSIM FUNKCIJU
+            return dfa;
         }
         private HashSet<string> FromSetForSymbolToSet(HashSet<string> stateSet, char symbol) {
             HashSet<string> result = new();
             foreach(string state in stateSet) {
-                foreach(string stateInClosure in EpsilonClosure(delta[(state, symbol)])) {
-                    result.Add(stateInClosure);    
+                if(delta.ContainsKey((state, symbol))) {
+                    foreach(string stateInClosure in EpsilonClosure(delta[(state, symbol)])) {
+                        result.Add(stateInClosure);    
+                    }
                 }
             }
             return result;
