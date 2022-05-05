@@ -49,6 +49,7 @@ namespace FMSILibrary {
             }
             return finalStates.Contains(currentState);
         }
+
         public void Minimize() {
             // uklanjanje nedostiznih stanja
             HashSet<string> unreachableStates = new();
@@ -87,18 +88,37 @@ namespace FMSILibrary {
                 foreach(string state in allStates) {
                     if(finalState != state && !finalStates.Contains(state)) {
                         nonEquivStates.Add((state, finalState));
-                        nonEquivStates.Add((finalState, state));
+                        //nonEquivStates.Add((finalState, state));
                     }
                 }
             }
             // punjenje skupa parova ciju ekvivalenciju provjeravamo
-            foreach(string state1 in allStates) {
-                foreach(string state2 in allStates) {
-                    if(state1 != state2 && !nonEquivStates.Contains((state1, state2)) && !potentiallyEquivStates.Contains((state2, state1))) {
-                        potentiallyEquivStates.Add((state1, state2));
+            foreach(string state1 in finalStates) {
+                foreach(string state2 in finalStates) {
+                    if(state1 != state2) {
+                        if(!potentiallyEquivStates.Contains((state1, state2)) && !potentiallyEquivStates.Contains((state2, state1)))
+                            potentiallyEquivStates.Add((state1, state2));
                     }
                 }
             }
+            HashSet<string> nonFinalStates = new(allStates);
+            nonFinalStates.ExceptWith(finalStates);
+            foreach(string state1 in nonFinalStates) {
+                foreach(string state2 in nonFinalStates) {
+                    if(state1 != state2) {
+                        if(!potentiallyEquivStates.Contains((state1, state2)) && !potentiallyEquivStates.Contains((state2, state1)))
+                            potentiallyEquivStates.Add((state1, state2));
+                    }
+                }
+            }
+
+            // foreach(string state1 in allStates) {
+            //     foreach(string state2 in allStates) {
+            //         if(state1 != state2 && !nonEquivStates.Contains((state1, state2)) && !potentiallyEquivStates.Contains((state2, state1))) {
+            //             potentiallyEquivStates.Add((state1, state2));
+            //         }
+            //     }
+            // }
 
             int sizeCurr, sizePrev;
             do {
@@ -114,11 +134,6 @@ namespace FMSILibrary {
                             nonEquivStates.Add(pair);
                             potentiallyEquivStates.Remove(pair);
                         }
-                        // if( nonEquivStates.Contains((delta[(pair.Item1, symbol)], delta[(pair.Item2, symbol)])) ||
-                        //     nonEquivStates.Contains((delta[(pair.Item2, symbol)], delta[(pair.Item1, symbol)]))) {
-                        //     nonEquivStates.Add(pair);
-                        //     potentiallyEquivStates.Remove(pair);
-                        // }
                     }
                 }
 
@@ -202,11 +217,6 @@ namespace FMSILibrary {
                 }
             }
             delta = tempDelta2;
-
-            // foreach(var entry in delta) {
-            //     Console.WriteLine();
-            //     Console.WriteLine(entry.Key.Item1 + ",  " + entry.Key.Item2 + " -> " + entry.Value);
-            // }
         }
         private bool SameState(string str1, string str2) {
             char[] first = str1.ToArray();
