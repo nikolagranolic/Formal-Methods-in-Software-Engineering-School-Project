@@ -217,6 +217,12 @@ namespace FMSILibrary {
                 }
             }
             delta = tempDelta2;
+
+            allStates.Clear();
+            foreach(var entry in delta) {
+                if(!allStates.Contains(entry.Key.Item1))
+                    allStates.Add(entry.Key.Item1);
+            }
         }
         private bool SameState(string str1, string str2) {
             char[] first = str1.ToArray();

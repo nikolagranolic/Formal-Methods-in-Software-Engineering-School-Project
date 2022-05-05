@@ -1,25 +1,38 @@
 ﻿using FMSILibrary;
 
-ENfa eNfa = new();
-eNfa.SetStartState("q0");
-eNfa.AddTransition("q0", 'a', new HashSet<string>{"q1"});
-eNfa.AddTransition("q0", 'b', new HashSet<string>{"q0"});
-eNfa.AddTransition("q1", 'b', new HashSet<string>{"q1"});
-eNfa.AddTransition("q1", '$', new HashSet<string>{"q2", "q4"});
-eNfa.AddTransition("q2", 'a', new HashSet<string>{"q2"});
-eNfa.AddTransition("q2", 'b', new HashSet<string>{"q5"});
-eNfa.AddTransition("q4", 'a', new HashSet<string>{"q5"});
-eNfa.AddTransition("q4", 'b', new HashSet<string>{"q3"});
-eNfa.AddTransition("q3", 'a', new HashSet<string>{"q4"});
-eNfa.AddFinalState("q5");
-Console.WriteLine(eNfa.Accepts("aaabaaba"));
-Console.WriteLine(eNfa.Accepts("bbabbbababaa"));
-Console.WriteLine(eNfa.Accepts("babaabababbaabbaaaabbb"));
-Console.WriteLine();
-Dfa dfa = eNfa.ConvertToDfa();
-Console.WriteLine(dfa.Accepts("aaabaaba"));
-Console.WriteLine(dfa.Accepts("bbabbbababaa"));
-Console.WriteLine(eNfa.Accepts("babaabababbaabbaaaabbb"));
+ENfa test = new();
+
+test.SetStartState("q0");
+test.AddTransition("q0", 'a', new HashSet<string>{"q1"});
+test.AddTransition("q1", 'a', new HashSet<string>{"q2"});
+test.AddTransition("q2", 'b', new HashSet<string>{"q3"});
+test.AddTransition("q3", 'b', new HashSet<string>{"q0"});
+
+Console.WriteLine(test.Accepts("abababbaaabab"));
+Dfa testDfa = test.ConvertToDfa();
+Console.WriteLine(testDfa.Accepts("abababbaaabab"));
+
+
+// ENfa eNfa = new();
+// eNfa.SetStartState("q0");
+// eNfa.AddTransition("q0", 'a', new HashSet<string>{"q1"});
+// eNfa.AddTransition("q0", 'b', new HashSet<string>{"q0"});
+// eNfa.AddTransition("q1", 'b', new HashSet<string>{"q1"});
+// eNfa.AddTransition("q1", '$', new HashSet<string>{"q2", "q4"});
+// eNfa.AddTransition("q2", 'a', new HashSet<string>{"q2"});
+// eNfa.AddTransition("q2", 'b', new HashSet<string>{"q5"});
+// eNfa.AddTransition("q4", 'a', new HashSet<string>{"q5"});
+// eNfa.AddTransition("q4", 'b', new HashSet<string>{"q3"});
+// eNfa.AddTransition("q3", 'a', new HashSet<string>{"q4"});
+// eNfa.AddFinalState("q5");
+// Console.WriteLine(eNfa.Accepts("aaabaaba"));
+// Console.WriteLine(eNfa.Accepts("bbabbbababaa"));
+// Console.WriteLine(eNfa.Accepts("babaabababbaabbaaaabbb"));
+// Console.WriteLine();
+// Dfa dfa = eNfa.ConvertToDfa();
+// Console.WriteLine(dfa.Accepts("aaabaaba"));
+// Console.WriteLine(dfa.Accepts("bbabbbababaa"));
+// Console.WriteLine(eNfa.Accepts("babaabababbaabbaaaabbb"));
 
 // Dfa testDfaBig = new();
 // testDfaBig.SetStartState("q0");
