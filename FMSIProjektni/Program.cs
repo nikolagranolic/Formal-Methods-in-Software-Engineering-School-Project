@@ -1,16 +1,38 @@
 ﻿using FMSILibrary;
 
-ENfa test = new();
+ENfa paranBrJedinica = new();
+paranBrJedinica.AddTransition("q0", '1', new HashSet<string>{"q1"});
+paranBrJedinica.AddTransition("q0", '0', new HashSet<string>{"q0"});
+paranBrJedinica.AddTransition("q1", '1', new HashSet<string>{"q0"});
+paranBrJedinica.AddTransition("q1", '0', new HashSet<string>{"q1"});
+paranBrJedinica.SetStartState("q0");
+paranBrJedinica.AddFinalState("q0");
+//Console.WriteLine(paranBrJedinica.Accepts("1111111111"));
+ENfa brojJedinicaDjeljivSa3 = new();
+brojJedinicaDjeljivSa3.AddTransition("p0", '1', new HashSet<string>{"p1"});
+brojJedinicaDjeljivSa3.AddTransition("p0", '0', new HashSet<string>{"p0"});
+brojJedinicaDjeljivSa3.AddTransition("p1", '1', new HashSet<string>{"p2"});
+brojJedinicaDjeljivSa3.AddTransition("p1", '0', new HashSet<string>{"p1"});
+brojJedinicaDjeljivSa3.AddTransition("p2", '1', new HashSet<string>{"p0"});
+brojJedinicaDjeljivSa3.AddTransition("p2", '0', new HashSet<string>{"p2"});
+brojJedinicaDjeljivSa3.SetStartState("p0");
+brojJedinicaDjeljivSa3.AddFinalState("p0");
+//Console.WriteLine(brojJedinicaDjeljivSa3.Accepts("000000000100010000000"));
+//ENfa brJedinicaDjeljivSa2ili3 = ENfa.Union(paranBrJedinica, brojJedinicaDjeljivSa3);
+//ENfa brJedinicaDjeljivSa6 = ENfa.Concatenation(paranBrJedinica, brojJedinicaDjeljivSa3);
+ENfa paranBr1Star = ENfa.Star(paranBrJedinica);
+Console.WriteLine(paranBr1Star.Accepts("1"));
+// ENfa test = new();
 
-test.SetStartState("q0");
-test.AddTransition("q0", 'a', new HashSet<string>{"q1"});
-test.AddTransition("q1", 'a', new HashSet<string>{"q2"});
-test.AddTransition("q2", 'b', new HashSet<string>{"q3"});
-test.AddTransition("q3", 'b', new HashSet<string>{"q0"});
+// test.SetStartState("q0");
+// test.AddTransition("q0", 'a', new HashSet<string>{"q1"});
+// test.AddTransition("q1", 'a', new HashSet<string>{"q2"});
+// test.AddTransition("q2", 'b', new HashSet<string>{"q3"});
+// test.AddTransition("q3", 'b', new HashSet<string>{"q0"});
 
-Console.WriteLine(test.Accepts("abababbaaabab"));
-Dfa testDfa = test.ConvertToDfa();
-Console.WriteLine(testDfa.Accepts("abababbaaabab"));
+// Console.WriteLine(test.Accepts("abababbaaabab"));
+// Dfa testDfa = test.ConvertToDfa();
+// Console.WriteLine(testDfa.Accepts("abababbaaabab"));
 
 
 // ENfa eNfa = new();
