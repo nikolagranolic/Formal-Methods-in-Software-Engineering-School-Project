@@ -105,26 +105,27 @@ namespace FMSILibrary {
             return dfa;
         }
         public static ENfa Union(ENfa m1, ENfa m2) {
-            ENfa result = new();
-            foreach(var entry in m1.delta) {
-                result.AddTransition(entry.Key.Item1, entry.Key.Item2, entry.Value);
-            }
-            foreach(var entry in m2.delta) {
-                result.AddTransition(entry.Key.Item1, entry.Key.Item2, entry.Value);
-            }
-            HashSet<string> temp = new();
-            foreach(var state in m1.startState)
-                temp.Add(state);
-            foreach(var state in m2.startState)
-                temp.Add(state);
-            result.AddTransition("start", '$', temp);
-            result.SetStartState("start");
-            foreach(var state in m1.finalStates)
-                result.AddFinalState(state);
-            foreach(var state in m2.finalStates)
-                result.AddFinalState(state);
+            return Dfa.Union(m1.ConvertToDfa(), m2.ConvertToDfa()).ConvertToENfa();
+            // ENfa result = new();
+            // foreach(var entry in m1.delta) {
+            //     result.AddTransition(entry.Key.Item1, entry.Key.Item2, entry.Value);
+            // }
+            // foreach(var entry in m2.delta) {
+            //     result.AddTransition(entry.Key.Item1, entry.Key.Item2, entry.Value);
+            // }
+            // HashSet<string> temp = new();
+            // foreach(var state in m1.startState)
+            //     temp.Add(state);
+            // foreach(var state in m2.startState)
+            //     temp.Add(state);
+            // result.AddTransition("start", '$', temp);
+            // result.SetStartState("start");
+            // foreach(var state in m1.finalStates)
+            //     result.AddFinalState(state);
+            // foreach(var state in m2.finalStates)
+            //     result.AddFinalState(state);
             
-            return result;
+            // return result;
         }
         public static ENfa Concatenation(ENfa m1, ENfa m2) {
             ENfa result = new();
@@ -157,6 +158,15 @@ namespace FMSILibrary {
             foreach(var state in result.finalStates)
                 result.AddTransition(state, '$', new HashSet<string>{temp});
             return result; 
+        }
+        public static ENfa Complement(ENfa m1) {
+            return Dfa.Complement(m1.ConvertToDfa()).ConvertToENfa();
+        }
+        public static ENfa Intersection(ENfa m1, ENfa m2) {
+            return Dfa.Intersection(m1.ConvertToDfa(), m2.ConvertToDfa()).ConvertToENfa();
+        }
+        public static ENfa Difference(ENfa m1, ENfa m2) {
+            return Dfa.Difference(m1.ConvertToDfa(), m2.ConvertToDfa()).ConvertToENfa();
         }
         private HashSet<string> FromSetForSymbolToSet(HashSet<string> stateSet, char symbol) {
             HashSet<string> result = new();

@@ -1,27 +1,56 @@
 ﻿using FMSILibrary;
 
-ENfa paranBrJedinica = new();
-paranBrJedinica.AddTransition("q0", '1', new HashSet<string>{"q1"});
-paranBrJedinica.AddTransition("q0", '0', new HashSet<string>{"q0"});
-paranBrJedinica.AddTransition("q1", '1', new HashSet<string>{"q0"});
-paranBrJedinica.AddTransition("q1", '0', new HashSet<string>{"q1"});
-paranBrJedinica.SetStartState("q0");
-paranBrJedinica.AddFinalState("q0");
-//Console.WriteLine(paranBrJedinica.Accepts("1111111111"));
-ENfa brojJedinicaDjeljivSa3 = new();
-brojJedinicaDjeljivSa3.AddTransition("p0", '1', new HashSet<string>{"p1"});
-brojJedinicaDjeljivSa3.AddTransition("p0", '0', new HashSet<string>{"p0"});
-brojJedinicaDjeljivSa3.AddTransition("p1", '1', new HashSet<string>{"p2"});
-brojJedinicaDjeljivSa3.AddTransition("p1", '0', new HashSet<string>{"p1"});
-brojJedinicaDjeljivSa3.AddTransition("p2", '1', new HashSet<string>{"p0"});
-brojJedinicaDjeljivSa3.AddTransition("p2", '0', new HashSet<string>{"p2"});
-brojJedinicaDjeljivSa3.SetStartState("p0");
-brojJedinicaDjeljivSa3.AddFinalState("p0");
+Dfa mod2true = new();
+mod2true.SetStartState("q0");
+mod2true.AddTransition("q0", '1', "q1");
+mod2true.AddTransition("q0", '0', "q0");
+mod2true.AddTransition("q1", '1', "q0");
+mod2true.AddTransition("q1", '0', "q1");
+mod2true.AddFinalState("q0");
+Dfa mod3true = new();
+mod3true.SetStartState("q0");
+mod3true.AddTransition("q0", '1', "q1");
+mod3true.AddTransition("q0", '0', "q0");
+mod3true.AddTransition("q1", '1', "q2");
+mod3true.AddTransition("q1", '0', "q1");
+mod3true.AddTransition("q2", '1', "q0");
+mod3true.AddTransition("q2", '0', "q2");
+mod3true.AddFinalState("q0");
+Dfa mod2notmod3 = Dfa.Difference(mod2true, mod3true);
+Console.WriteLine(mod2notmod3.Accepts("00100110000011000110010110000"));
+
+
+
+// ENfa paranBrJedinica = new();
+// paranBrJedinica.AddTransition("q0", '1', new HashSet<string>{"q1"});
+// paranBrJedinica.AddTransition("q0", '0', new HashSet<string>{"q0"});
+// paranBrJedinica.AddTransition("q1", '1', new HashSet<string>{"q0"});
+// paranBrJedinica.AddTransition("q1", '0', new HashSet<string>{"q1"});
+// paranBrJedinica.SetStartState("q0");
+// paranBrJedinica.AddFinalState("q0");
+// ENfa nepBr1 = ENfa.Complement(paranBrJedinica);
+//  Console.WriteLine(nepBr1.Accepts("1000000"));
+// ENfa neparanBrJedinica = ENfa.Complement(paranBrJedinica);
+// Console.WriteLine(neparanBrJedinica.Accepts("111"));
+// ENfa brojJedinicaDjeljivSa3 = new();
+// brojJedinicaDjeljivSa3.AddTransition("p0", '1', new HashSet<string>{"p1"});
+// brojJedinicaDjeljivSa3.AddTransition("p0", '0', new HashSet<string>{"p0"});
+// brojJedinicaDjeljivSa3.AddTransition("p1", '1', new HashSet<string>{"p2"});
+// brojJedinicaDjeljivSa3.AddTransition("p1", '0', new HashSet<string>{"p1"});
+// brojJedinicaDjeljivSa3.AddTransition("p2", '1', new HashSet<string>{"p0"});
+// brojJedinicaDjeljivSa3.AddTransition("p2", '0', new HashSet<string>{"p2"});
+// brojJedinicaDjeljivSa3.SetStartState("p0");
+// brojJedinicaDjeljivSa3.AddFinalState("p0");
+
+// ENfa mod2notmod3 = ENfa.Difference(paranBrJedinica, brojJedinicaDjeljivSa3);
+// Console.WriteLine(mod2notmod3.Accepts("1111111111"));
+
+
 //Console.WriteLine(brojJedinicaDjeljivSa3.Accepts("000000000100010000000"));
 //ENfa brJedinicaDjeljivSa2ili3 = ENfa.Union(paranBrJedinica, brojJedinicaDjeljivSa3);
 //ENfa brJedinicaDjeljivSa6 = ENfa.Concatenation(paranBrJedinica, brojJedinicaDjeljivSa3);
-ENfa paranBr1Star = ENfa.Star(paranBrJedinica);
-Console.WriteLine(paranBr1Star.Accepts("1"));
+//ENfa paranBr1Star = ENfa.Star(paranBrJedinica);
+//Console.WriteLine(paranBr1Star.Accepts("1"));
 // ENfa test = new();
 
 // test.SetStartState("q0");

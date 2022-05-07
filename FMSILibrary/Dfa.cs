@@ -1,5 +1,14 @@
 namespace FMSILibrary {
     public class Dfa {
+        public Dfa() {}
+        public Dfa(Dfa other) {
+            delta = new(other.delta);
+            finalStates = new(other.finalStates);
+            allStates = new(other.allStates);
+            alphabet = new(other.alphabet);
+            startState = other.startState;
+            currentState = other.currentState;
+        }
         private Dictionary<(string, char), string> delta = new();
         private HashSet<char> alphabet = new();
         private HashSet<string> allStates = new();
@@ -252,6 +261,44 @@ namespace FMSILibrary {
             }
             eNfa.SetStartState(startState);
             return eNfa;
+        }
+        public static Dfa Union(Dfa m1, Dfa m2) {
+            Dfa result = new();
+            (string, string) temp = new();
+            Queue<(string, string)> queue = new();
+            HashSet<(string, string)> visitedPairs = new();
+            queue.Enqueue((m1.startState, m2.startState));
+            result.SetStartState(m1.startState + m2.startState);
+            while(queue.Count > 0) {
+                temp = queue.Dequeue();
+                visitedPairs.Add((temp.Item1, temp.Item2));
+                if(m1.finalStates.Contains(temp.Item1) || m2.finalStates.Contains(temp.Item2))
+                    result.AddFinalState(temp.Item1 + temp.Item2);
+                foreach(char symbol in m1.alphabet) {
+                    result.AddTransition(temp.Item1 + temp.Item2, symbol, m1.delta[(temp.Item1, symbol)] + m2.delta[(temp.Item2, symbol)]);
+                    if(!visitedPairs.Contains((m1.delta[(temp.Item1, symbol)], m2.delta[(temp.Item2, symbol)])))
+                        queue.Enqueue((m1.delta[(temp.Item1, symbol)], m2.delta[(temp.Item2, symbol)]));
+                }
+            }
+            return result;
+        }
+        public static Dfa Intersection(Dfa m1, Dfa m2) {
+            return Dfa.Complement(Dfa.Union(Dfa.Complement(m1), Dfa.Complement(m2))); // De-Morganova formula
+        }
+        public static Dfa Complement(Dfa m1) {
+            Dfa result = new(m1);
+            result.finalStates = new(result.allStates);
+            result.finalStates.ExceptWith(m1.finalStates);
+            return result;
+        }
+        public static Dfa Difference(Dfa m1, Dfa m2) { 
+            return Dfa.Intersection(m1, Dfa.Complement(m2)); // formula: A/B = A(Bc)
+        }
+        private static String FromSetToString(HashSet<string> set) {
+            String result = "";
+            foreach(var str in set)
+                result += str;
+            return result;
         }
     }
 }
