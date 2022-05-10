@@ -294,6 +294,40 @@ namespace FMSILibrary {
         public static Dfa Difference(Dfa m1, Dfa m2) { 
             return Dfa.Intersection(m1, Dfa.Complement(m2)); // formula: A/B = A(Bc)
         }
+        public int ShortestWordLength() {
+            Queue<string> queue = new();
+            queue.Enqueue(startState);
+            return ShortestWord(queue);
+        }
+        // public bool IsLanguageFinite() {
+        //     Minimize();                         // <--- da bi ukoliko ciklus postoji i ne sadrzi finalno stanje a da se iz ciklusa ne mozemo vratiti nazad
+        //     Queue<string> queue = new();        // do finalnog stanja da taj ciklus zamijenimo jednim neekvivalentnim stanjem pa da onda sigurno znamo da
+        //     HashSet<string> visited = new();    // ciklus koji smo detektovali sigurno sadrzi ciklus
+        //     queue.Enqueue(startState);
+        //     while(queue.Count > 0) {
+        //         String temp = queue.Dequeue();
+        //         visited.Add(temp);
+        //         foreach(char symbol in alphabet) {
+        //             if(!visited.Contains(delta[(temp, symbol)]))
+        //                 queue.Enqueue(delta[(temp, symbol)]));
+        //             else
+        //                 return true;
+        //         }
+
+        //     }
+        // }
+        private int ShortestWord(Queue<string> queue, int length = 0) {
+            String temp = queue.Dequeue();
+            if(finalStates.Contains(temp))
+                return length;
+            foreach(char symbol in alphabet) {
+                if(!finalStates.Contains(delta[(temp, symbol)]))
+                    queue.Enqueue(delta[(temp, symbol)]);
+                else
+                    return length + 1;
+            }
+            return ShortestWord(queue, length + 1);
+        }
         private static String FromSetToString(HashSet<string> set) {
             String result = "";
             foreach(var str in set)

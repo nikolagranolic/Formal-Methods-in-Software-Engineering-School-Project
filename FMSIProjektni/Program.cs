@@ -1,23 +1,68 @@
 ﻿using FMSILibrary;
 
-Dfa mod2true = new();
-mod2true.SetStartState("q0");
-mod2true.AddTransition("q0", '1', "q1");
-mod2true.AddTransition("q0", '0', "q0");
-mod2true.AddTransition("q1", '1', "q0");
-mod2true.AddTransition("q1", '0', "q1");
-mod2true.AddFinalState("q0");
-Dfa mod3true = new();
-mod3true.SetStartState("q0");
-mod3true.AddTransition("q0", '1', "q1");
-mod3true.AddTransition("q0", '0', "q0");
-mod3true.AddTransition("q1", '1', "q2");
-mod3true.AddTransition("q1", '0', "q1");
-mod3true.AddTransition("q2", '1', "q0");
-mod3true.AddTransition("q2", '0', "q2");
-mod3true.AddFinalState("q0");
-Dfa mod2notmod3 = Dfa.Difference(mod2true, mod3true);
-Console.WriteLine(mod2notmod3.Accepts("00100110000011000110010110000"));
+// ENfa test1 = new();
+// test1.SetStartState("q0");
+// test1.AddTransition("q0", '1', new HashSet<string>{"q1"});
+// test1.AddTransition("q0", '0', new HashSet<string>{"q0"});
+// test1.AddTransition("q1", '1', new HashSet<string>{"q0"});
+// test1.AddTransition("q1", '0', new HashSet<string>{"q1"});
+// test1.AddFinalState("q1");
+
+// Dfa test2 = new();
+// test2.SetStartState("p0");
+// test2.AddTransition("p0", '1', "p0");
+// test2.AddTransition("p0", '0', "p1");
+// test2.AddTransition("p1", '1', "p1");
+// test2.AddTransition("p1", '0', "p0");
+// test2.AddFinalState("p0");
+
+// Console.WriteLine(test1.Accepts("10011"));
+
+// Console.WriteLine(test2.Accepts("10011"));
+
+// Dfa testDfa1 = test1.ConvertToDfa();
+
+// Dfa intersection = Dfa.Intersection(testDfa1, test2);
+// Dfa union = Dfa.Union(testDfa1, test2);
+// Dfa difference = Dfa.Difference(testDfa1, test2);
+
+// Console.WriteLine("PRESJEK: " + intersection.Accepts("10011"));
+// Console.WriteLine("UNIJA: " + union.Accepts("10011"));
+// Console.WriteLine("RAZLIKA: " + difference.Accepts("10011"));
+
+// Console.WriteLine(test1.ConvertToDfa().ShortestWordLength());
+
+Dfa rijeciDuzine2 = new();
+rijeciDuzine2.SetStartState("m0");
+rijeciDuzine2.AddTransition("m0", 'a', "m1");
+rijeciDuzine2.AddTransition("m0", 'b', "m1");
+rijeciDuzine2.AddTransition("m1", 'a', "m2");
+rijeciDuzine2.AddTransition("m1", 'b', "m2");
+rijeciDuzine2.AddTransition("m2", 'a', "m3");
+rijeciDuzine2.AddTransition("m2", 'b', "m3");
+rijeciDuzine2.AddTransition("m3", 'a', "m3");
+rijeciDuzine2.AddTransition("m3", 'b', "m3");
+rijeciDuzine2.AddFinalState("m2");
+Console.WriteLine(rijeciDuzine2.Accepts("ababababbbaabbabbabab"));
+Console.WriteLine(rijeciDuzine2.ShortestWordLength());
+// Dfa mod2true = new();
+// mod2true.SetStartState("q0");
+// mod2true.AddTransition("q0", '1', "q1");
+// mod2true.AddTransition("q0", '0', "q0");
+// mod2true.AddTransition("q1", '1', "q0");
+// mod2true.AddTransition("q1", '0', "q1");
+// mod2true.AddFinalState("q0");
+// Dfa mod3true = new();
+// mod3true.SetStartState("q0");
+// mod3true.AddTransition("q0", '1', "q1");
+// mod3true.AddTransition("q0", '0', "q0");
+// mod3true.AddTransition("q1", '1', "q2");
+// mod3true.AddTransition("q1", '0', "q1");
+// mod3true.AddTransition("q2", '1', "q0");
+// mod3true.AddTransition("q2", '0', "q2");
+// mod3true.AddFinalState("q0");
+// Dfa mod2notmod3 = Dfa.Difference(mod2true, mod3true);
+// Console.WriteLine(mod2notmod3.Accepts("00100110000011000110010110000"));
 
 
 
