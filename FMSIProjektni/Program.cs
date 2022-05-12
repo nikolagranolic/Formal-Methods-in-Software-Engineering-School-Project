@@ -1,4 +1,8 @@
 ﻿using FMSILibrary;
+ENfa regex = Regex.Evaluate("b+a-b*"); 
+Dfa dfaRegex = regex.ConvertToDfa();
+Console.WriteLine(regex.Accepts("abb"));
+Console.WriteLine(dfaRegex.Accepts("abb"));
 
 // ENfa test1 = new();
 // test1.SetStartState("q0");
@@ -32,19 +36,23 @@
 
 // Console.WriteLine(test1.ConvertToDfa().ShortestWordLength());
 
-Dfa rijeciDuzine2 = new();
-rijeciDuzine2.SetStartState("m0");
-rijeciDuzine2.AddTransition("m0", 'a', "m1");
-rijeciDuzine2.AddTransition("m0", 'b', "m1");
-rijeciDuzine2.AddTransition("m1", 'a', "m2");
-rijeciDuzine2.AddTransition("m1", 'b', "m2");
-rijeciDuzine2.AddTransition("m2", 'a', "m3");
-rijeciDuzine2.AddTransition("m2", 'b', "m3");
-rijeciDuzine2.AddTransition("m3", 'a', "m3");
-rijeciDuzine2.AddTransition("m3", 'b', "m3");
-rijeciDuzine2.AddFinalState("m2");
-Console.WriteLine(rijeciDuzine2.Accepts("ababababbbaabbabbabab"));
-Console.WriteLine(rijeciDuzine2.ShortestWordLength());
+// Dfa rijeciDuzine2 = new();
+// rijeciDuzine2.SetStartState("m0");
+// rijeciDuzine2.AddTransition("m0", 'a', "m1");
+// rijeciDuzine2.AddTransition("m0", 'b', "m1");
+// rijeciDuzine2.AddTransition("m1", 'a', "m2");
+// rijeciDuzine2.AddTransition("m1", 'b', "m2");
+// rijeciDuzine2.AddTransition("m2", 'a', "m3");
+// rijeciDuzine2.AddTransition("m2", 'b', "m3");
+// rijeciDuzine2.AddTransition("m3", 'a', "m3");
+// rijeciDuzine2.AddTransition("m3", 'b', "m3");
+// rijeciDuzine2.AddFinalState("m2");
+// Console.WriteLine(rijeciDuzine2.Accepts("ababababbbaabbabbabab"));
+// Console.WriteLine(rijeciDuzine2.ShortestWordLength());
+
+
+
+
 // Dfa mod2true = new();
 // mod2true.SetStartState("q0");
 // mod2true.AddTransition("q0", '1', "q1");

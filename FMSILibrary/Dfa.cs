@@ -209,7 +209,7 @@ namespace FMSILibrary {
 
             foreach(string state in namedEquivStates) {
                 foreach(var entry in tempDelta) {
-                    if(state.Contains(entry.Value)) {
+                    if(entry.Value != "" && state.Contains(entry.Value)) {
                         tempDelta[entry.Key] = state;
                     }
                 }
