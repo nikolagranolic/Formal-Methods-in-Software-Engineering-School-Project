@@ -172,18 +172,27 @@ namespace FMSILibrary {
         public static ENfa Complement(ENfa m1) {
             return Dfa.Complement(m1.ConvertToDfa()).ConvertToENfa();
         }
+
         public static ENfa Intersection(ENfa m1, ENfa m2) {
             return Dfa.Intersection(m1.ConvertToDfa(), m2.ConvertToDfa()).ConvertToENfa();
         }
+
         public static ENfa Difference(ENfa m1, ENfa m2) {
             return Dfa.Difference(m1.ConvertToDfa(), m2.ConvertToDfa()).ConvertToENfa();
         }
-        // public static ENfa FromRegexToENfa(string regex) {
-        //     ENfa result = new();
-        //     foreach(char symbol in regex) {
-                
-        //     }
-        // }
+        
+        public int ShortestWordLength() {
+            Dfa temp = ConvertToDfa();
+            temp.Minimize();
+            return temp.ShortestWordLength();
+        }
+
+        public int LongestWordLength() {
+            Dfa temp = ConvertToDfa();
+            temp.Minimize();
+            return temp.LongestWordLength();
+        }
+
         private HashSet<string> FromSetForSymbolToSet(HashSet<string> stateSet, char symbol) {
             HashSet<string> result = new();
             foreach(string state in stateSet) {
@@ -199,7 +208,10 @@ namespace FMSILibrary {
             String result = "";
             foreach(var str in set)
                 result += str;
-            return result;
+            if(result != "")
+                return result;
+            else
+                return "dS";
         }
     }
 }

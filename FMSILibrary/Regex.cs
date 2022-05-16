@@ -2,6 +2,7 @@ namespace FMSILibrary {
     public class Regex {
         static int n = 0;
         public static ENfa Evaluate(String input) {
+            input = PrepareString(input);
             String expr = "(" + input + ")";
             Stack<string> ops = new();
             Stack<string> unionOps = new();
@@ -73,6 +74,17 @@ namespace FMSILibrary {
                 return vals.Pop();
             else
                 return unionVals.Pop();
+        }
+        public static string PrepareString(string input) {
+            HashSet<char> specialCharacters = new HashSet<char>{'+', '-', '*', '(', ')'};
+            List<char> str = input.ToList();
+            for(int i = 0; i < str.Count - 1; i++) {
+                if(!specialCharacters.Contains(str[i]) && !specialCharacters.Contains(str[i + 1])) {
+                    str.Insert(i++ + 1, '-');
+                }
+            }
+            char[] str1 = str.ToArray();
+            return new String(str1);
         }
     }
 }

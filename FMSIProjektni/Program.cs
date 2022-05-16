@@ -1,8 +1,66 @@
 ﻿using FMSILibrary;
-ENfa regex = Regex.Evaluate("a-b*+b+a"); 
-Dfa dfaRegex = regex.ConvertToDfa();
-Console.WriteLine(regex.Accepts("aba"));
-Console.WriteLine(dfaRegex.Accepts("aba"));
+
+Dfa test = new();
+// test.SetStartState("m0");
+// test.AddTransition("m0", '1', "m1");
+// test.AddTransition("m1", '1', "m2");
+// test.AddTransition("m2", '1', "m3");
+// test.AddTransition("m3", '1', "m4");
+// test.AddTransition("m4", '1', "m5");
+// test.AddTransition("m5", '1', "m5");
+// test.AddFinalState("m0");
+// test.AddFinalState("m1");
+// test.AddFinalState("m2");
+// test.AddFinalState("m3");
+// test.AddFinalState("m4");
+// Console.WriteLine(test.Accepts("1"));
+// Console.WriteLine(test.Accepts("11"));
+// Console.WriteLine(test.Accepts("111"));
+// Console.WriteLine(test.Accepts("1111"));
+// Console.WriteLine(test.Accepts("11111"));
+// Console.WriteLine(test.LongestWordLength());
+
+Dfa test2 = Regex.Evaluate("01+101+1001010+010101010").ConvertToDfa();
+Console.WriteLine(test2.LongestWordLength());
+
+// Dfa mod2true = new();
+// mod2true.SetStartState("q0");
+// mod2true.AddTransition("q0", '1', "q1");
+// mod2true.AddTransition("q0", '0', "q0");
+// mod2true.AddTransition("q1", '1', "q0");
+// mod2true.AddTransition("q1", '0', "q1");
+// mod2true.AddFinalState("q0");
+// Console.WriteLine(mod2true.IsLanguageFinite());
+
+
+// Dfa finiteLang = new();
+// finiteLang.SetStartState("p0");
+// finiteLang.AddTransition("p0", '1', "p1");
+// finiteLang.AddTransition("p1", '1', "p2");
+// finiteLang.AddTransition("p2", '1', "p3");
+// finiteLang.AddTransition("p3", '1', "p3");
+// finiteLang.AddFinalState("p2");
+// Console.WriteLine(finiteLang.Accepts("11"));
+
+// Dfa finiteLang2 = Regex.Evaluate("11").ConvertToDfa();
+// Console.WriteLine(Equivalence.AreEquivalent(finiteLang, finiteLang2));
+
+// ENfa test2 = new();
+// test2.SetStartState("k0");
+// test2.AddTransition("k0", '1', new HashSet<string>{"k1"});
+// test2.AddTransition("k1", '1', new HashSet<string>{"k2"});
+// test2.AddTransition("k2", '1', new HashSet<string>{"k3"});
+// test2.AddFinalState("k2");
+// Console.WriteLine("\n" + Equivalence.AreEquivalent("11", finiteLang));
+
+
+
+
+//ENfa enfa2 = Regex.Evaluate()
+// ENfa regex = Regex.Evaluate("a-b*+b+a"); 
+// Dfa dfaRegex = regex.ConvertToDfa();
+// Console.WriteLine(regex.Accepts("aba"));
+// Console.WriteLine(dfaRegex.Accepts("aba"));
 
 // ENfa test1 = new();
 // test1.SetStartState("q0");

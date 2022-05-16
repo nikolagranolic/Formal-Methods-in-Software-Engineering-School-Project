@@ -13,23 +13,12 @@ namespace FMSILibrary {
         private HashSet<char> alphabet = new();
         private HashSet<string> allStates = new();
         private HashSet<string> finalStates = new();
-    
+
         private string startState = "";
         private string currentState = "";
-        public string StartState {
+        public int FinalStates {
             get {
-                return startState;
-            }
-            set {
-                startState = value;
-            }
-        }
-        public string CurrentState {
-            get {
-                return currentState;
-            }
-            set {
-                currentState = value;
+                return finalStates.Count;
             }
         }
         //dodavanje prelaza iz stanja u stanje za odredjeni simbol (sve ovo se cuva u dictionary-ju)
@@ -59,7 +48,7 @@ namespace FMSILibrary {
             return finalStates.Contains(currentState);
         }
 
-        public void Minimize() {
+        public Dfa Minimize() {
             // uklanjanje nedostiznih stanja
             HashSet<string> unreachableStates = new();
             HashSet<string> reachableStates = new();
@@ -232,6 +221,7 @@ namespace FMSILibrary {
                 if(!allStates.Contains(entry.Key.Item1))
                     allStates.Add(entry.Key.Item1);
             }
+            return this; // dawdawdawd
         }
         private bool SameState(string str1, string str2) {
             char[] first = str1.ToArray();
@@ -296,30 +286,80 @@ namespace FMSILibrary {
         }
 
         public int ShortestWordLength() {
+            // if(finalStates.Count == 0)
+            //     return -1;
             Queue<string> queue = new();
             queue.Enqueue(startState);
             return ShortestWord(queue);
         }
 
+        public int LongestWordLength() {
+            if(!IsLanguageFinite())
+                return -1;
+            else {
+                Stack<string> stack = new();
+                HashSet<string> visited = new();
+                int rf = 0;
+                return LongestWord(startState, stack, visited, ref rf);
+            }
+        }
+
         public bool IsLanguageFinite() {
+            //Dfa temp = new(this);
+            //Minimize();
             bool result = true;
-
-
+            foreach(var entry in delta) { // prvo provjera da neko fin. stanje ima autotranziciju (ako ima jezik je beskonacan)
+                if(entry.Key.Item1 == entry.Value) {
+                    if(finalStates.Contains(entry.Key.Item1))
+                        return false;
+                    else {
+                        Queue<string> queue = new();
+                        queue.Enqueue(entry.Key.Item1);
+                        if(ShortestWord(queue) > 0)
+                            return false;
+                    }
+                }  
+            }
+            result = Dfs();
             return result;
         }
         
-        private void Dfs() {
-            Dictionary<string, bool> visited = new();
-            foreach(var state in allStates) {
-                visited[state] = false;
+        private bool Dfs() {
+            bool result;
+            HashSet<string> visited = new();
+            string stateInCycle = DfsVisit(startState, visited);
+            if(stateInCycle == "")
+                return true;
+            Queue<string> queue = new();
+            queue.Enqueue(stateInCycle);
+            if(ShortestWord(queue) > 0)
+                result = false;
+            else
+                result = true;
+            return result;
+        }
+
+        private string DfsVisit(string state, HashSet<string> visited) {
+            if(!visited.SetEquals(allStates)) {
+                visited.Add(state);
+                foreach(char symbol in alphabet) {
+                    if(visited.Contains(delta[(state, symbol)])) {
+                        return delta[(state, symbol)];
+                    }
+                    else {
+                        return DfsVisit(delta[(state, symbol)], visited);
+                    }
+                }
+                return "";
             }
-            
+            else
+                return "";
         }
 
-        private void DfsVisit() {
 
-        }
         private int ShortestWord(Queue<string> queue, int length = 0) {
+            if(length > allStates.Count) // uslov ce biti ispunjen ukoliko nema finalnog stanja dostiznog od elemenata reda
+                return -1;
             String temp = queue.Dequeue();
             if(finalStates.Contains(temp))
                 return length;
@@ -330,6 +370,19 @@ namespace FMSILibrary {
                     return length + 1;
             }
             return ShortestWord(queue, length + 1);
+        }
+
+        private int LongestWord(string state, Stack<string> stack, HashSet<string> visited, ref int count, int length = 0) {
+            visited.Add(state);
+            stack.Push(state);
+            foreach(char symbol in alphabet) {
+                if(finalStates.Contains(state) && length > count)
+                    count = length;
+                if(!stack.Contains(delta[(state, symbol)]))
+                    LongestWord(delta[(state, symbol)], stack, visited, ref count, length + 1);
+            }
+            stack.Pop();
+            return count;
         }
 
         private static String FromSetToString(HashSet<string> set) {
