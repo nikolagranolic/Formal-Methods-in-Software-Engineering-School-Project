@@ -1,8 +1,8 @@
 ﻿using FMSILibrary;
-ENfa regex = Regex.Evaluate("b+a-b*"); 
+ENfa regex = Regex.Evaluate("a-b*+b+a"); 
 Dfa dfaRegex = regex.ConvertToDfa();
-Console.WriteLine(regex.Accepts("abb"));
-Console.WriteLine(dfaRegex.Accepts("abb"));
+Console.WriteLine(regex.Accepts("aba"));
+Console.WriteLine(dfaRegex.Accepts("aba"));
 
 // ENfa test1 = new();
 // test1.SetStartState("q0");
