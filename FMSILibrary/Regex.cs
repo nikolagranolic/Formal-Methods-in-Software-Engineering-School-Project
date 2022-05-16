@@ -16,8 +16,6 @@ namespace FMSILibrary {
                 else if (s.Equals("-")) ops.Push(s);
                 else if (s.Equals("*")) {
                     ops.Push(s);
-                    // ENfa v = vals.Pop();
-                    // vals.Push(ENfa.Star(v));
                 }
                 else if (s.Equals(")"))
                 {
