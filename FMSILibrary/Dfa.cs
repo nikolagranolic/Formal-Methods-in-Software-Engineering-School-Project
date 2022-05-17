@@ -286,11 +286,15 @@ namespace FMSILibrary {
         }
 
         public int ShortestWordLength() {
-            // if(finalStates.Count == 0)
-            //     return -1;
-            Queue<string> queue = new();
-            queue.Enqueue(startState);
-            return ShortestWord(queue);
+            Stack<string> stack = new();
+            HashSet<string> visited = new();
+            int rf = allStates.Count;
+            if(finalStates.Count == 0)
+                return -1;
+            return ShortestWord(startState, stack, visited, ref rf);
+            // Queue<string> queue = new();
+            // queue.Enqueue(startState);
+            // return ShortestWord(queue);
         }
 
         public int LongestWordLength() {
@@ -315,7 +319,10 @@ namespace FMSILibrary {
                     else {
                         Queue<string> queue = new();
                         queue.Enqueue(entry.Key.Item1);
-                        if(ShortestWord(queue) > 0)
+                        HashSet<string> visited = new();
+                        Stack<string> stack = new();
+                        int temp = 0;
+                        if(ShortestWord(entry.Key.Item1, stack, visited, ref temp) > 0)
                             return false;
                     }
                 }  
@@ -332,7 +339,10 @@ namespace FMSILibrary {
                 return true;
             Queue<string> queue = new();
             queue.Enqueue(stateInCycle);
-            if(ShortestWord(queue) > 0)
+            HashSet<string> visited2 = new();
+            Stack<string> stack = new();
+            int temp = 0;
+            if(ShortestWord(stateInCycle, stack, visited2, ref temp) > 0)
                 result = false;
             else
                 result = true;
@@ -356,22 +366,18 @@ namespace FMSILibrary {
                 return "";
         }
 
-
-        private int ShortestWord(Queue<string> queue, int length = 0) {
-            if(length > allStates.Count) // uslov ce biti ispunjen ukoliko nema finalnog stanja dostiznog od elemenata reda
-                return -1;
-            String temp = queue.Dequeue();
-            if(finalStates.Contains(temp))
-                return length;
+        private int ShortestWord(string state, Stack<string> stack, HashSet<string> visited, ref int count, int length = 0) {
+            //visited.Add(state);
+            stack.Push(state);
             foreach(char symbol in alphabet) {
-                if(!finalStates.Contains(delta[(temp, symbol)]))
-                    queue.Enqueue(delta[(temp, symbol)]);
-                else
-                    return length + 1;
+                if(finalStates.Contains(state) && length < count)
+                    count = length;
+                if(!stack.Contains(delta[(state, symbol)]))
+                    ShortestWord(delta[(state, symbol)], stack, visited, ref count, length + 1);
             }
-            return ShortestWord(queue, length + 1);
+            stack.Pop();
+            return count;
         }
-
         private int LongestWord(string state, Stack<string> stack, HashSet<string> visited, ref int count, int length = 0) {
             visited.Add(state);
             stack.Push(state);

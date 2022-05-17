@@ -1,6 +1,6 @@
 ﻿using FMSILibrary;
 
-Dfa test = new();
+//Dfa test = new();
 // test.SetStartState("m0");
 // test.AddTransition("m0", '1', "m1");
 // test.AddTransition("m1", '1', "m2");
@@ -19,9 +19,21 @@ Dfa test = new();
 // Console.WriteLine(test.Accepts("1111"));
 // Console.WriteLine(test.Accepts("11111"));
 // Console.WriteLine(test.LongestWordLength());
+ENfa test2 = new();
+test2.SetStartState("k0");
+test2.AddTransition("k0", '1', new HashSet<string>{"k1"});
+test2.AddTransition("k1", '1', new HashSet<string>{"k2"});
+test2.AddTransition("k2", '1', new HashSet<string>{"k3"});
+test2.AddFinalState("k1");
+Dfa test4 = test2.ConvertToDfa();
+Console.WriteLine(test4.Accepts("1"));
+Console.WriteLine(test4.ShortestWordLength());
+Console.WriteLine(test4.LongestWordLength());
 
-Dfa test2 = Regex.Evaluate("01+101+1001010+010101010").ConvertToDfa();
-Console.WriteLine(test2.LongestWordLength());
+// Dfa test3 = Regex.Evaluate("01+11(0+1)+0(11+01+00+10)*").ConvertToDfa(); 
+// Console.WriteLine(test3.LongestWordLength());
+// Console.WriteLine(test3.ShortestWordLength());
+
 
 // Dfa mod2true = new();
 // mod2true.SetStartState("q0");
