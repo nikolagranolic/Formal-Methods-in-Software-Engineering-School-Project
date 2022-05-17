@@ -19,20 +19,24 @@
 // Console.WriteLine(test.Accepts("1111"));
 // Console.WriteLine(test.Accepts("11111"));
 // Console.WriteLine(test.LongestWordLength());
-ENfa test2 = new();
-test2.SetStartState("k0");
-test2.AddTransition("k0", '1', new HashSet<string>{"k1"});
-test2.AddTransition("k1", '1', new HashSet<string>{"k2"});
-test2.AddTransition("k2", '1', new HashSet<string>{"k3"});
-test2.AddFinalState("k1");
-Dfa test4 = test2.ConvertToDfa();
-Console.WriteLine(test4.Accepts("1"));
-Console.WriteLine(test4.ShortestWordLength());
-Console.WriteLine(test4.LongestWordLength());
-
-// Dfa test3 = Regex.Evaluate("01+11(0+1)+0(11+01+00+10)*").ConvertToDfa(); 
-// Console.WriteLine(test3.LongestWordLength());
-// Console.WriteLine(test3.ShortestWordLength());
+// ENfa test2 = new();
+// test2.SetStartState("k0");
+// test2.AddTransition("k0", '1', new HashSet<string>{"k1"});
+// test2.AddTransition("k1", '1', new HashSet<string>{"k2"});
+// test2.AddTransition("k2", '1', new HashSet<string>{"k3"});
+// test2.AddFinalState("k1");
+// Dfa test4 = test2.ConvertToDfa();
+// Console.WriteLine(test4.Accepts("1"));
+// Console.WriteLine(test4.ShortestWordLength());
+// Console.WriteLine(test4.LongestWordLength());
+//01+11(0+1)+0(11+01+00+10)*
+ENfa test = Regex.Evaluate("ab*+a(b+ab+a+ab+a)+b*");
+Console.WriteLine(test.ShortestWordLength());
+Console.WriteLine(test.LongestWordLength());
+Console.WriteLine(test.Accepts("aab"));
+Console.WriteLine(test.Accepts("abbb"));
+Console.WriteLine(test.Accepts(""));
+Console.WriteLine(test.Accepts("abababbb"));
 
 
 // Dfa mod2true = new();

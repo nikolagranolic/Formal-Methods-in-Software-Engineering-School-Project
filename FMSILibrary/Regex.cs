@@ -31,7 +31,6 @@ namespace FMSILibrary {
                 {
                     int count = nestedParTracker[nestedParCounter];
                     nestedParTracker.RemoveAt(nestedParCounter--);
-                    // int count = ops.Count;
                     while (count > 0) {
                         String op = ops.Pop();
                         ENfa v = vals.Pop();
@@ -39,22 +38,17 @@ namespace FMSILibrary {
                             unionOps.Push(op);
                             unionVals.Push(v);
                         }
-                        //if (op.Equals("+")) v = ENfa.Union(vals.Pop(), v);
                         else if (op.Equals("-")) {
                             v = ENfa.Concatenation(vals.Pop(), v);
                             vals.Push(v);
                         }
-                        // else if (op.Equals("*")) {
-                        //     v = ENfa.Star(v);
-                        //     vals.Push(v);
-                        // }
                         count--;
 
                         
                     }
                     if(unionOps.Count > 0) {
                         int unionCount = unionOps.Count;
-                        unionVals.Push(vals.Pop());
+                        unionVals.Push(vals.Pop()); // dodati da prebaci onoliko vrijednosti koliko ima operatora +
                         while (unionCount > 0) {
                         ENfa v = unionVals.Pop();
                         unionVals.Push(ENfa.Union(unionVals.Pop(), v));
@@ -102,7 +96,9 @@ namespace FMSILibrary {
                 if(!specialCharacters.Contains(str[i + 1]) && str[i] == ')')
                     str.Insert(i++ + 1, '-');
                 if(!specialCharacters.Contains(str[i + 1]) && str[i] == '*')
-                    str.Insert(i++ + 1, '-');    
+                    str.Insert(i++ + 1, '-');   
+                if(str[i] == '*' && str[i + 1] == '(')
+                    str.Insert(i++ + 1, '-');
             }
             char[] str1 = str.ToArray();
             return new String(str1);
