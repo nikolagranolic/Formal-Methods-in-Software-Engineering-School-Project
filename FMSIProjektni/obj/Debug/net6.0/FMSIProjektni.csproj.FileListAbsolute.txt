@@ -34,3 +34,21 @@ C:\Users\grana\Desktop\Fakultet\Druga godina\Projektni-zadatak---FMSI\FMSIProjek
 C:\Users\grana\Desktop\Fakultet\Druga godina\Projektni-zadatak---FMSI\FMSIProjektni\obj\Debug\net6.0\FMSIProjektni.pdb
 C:\Users\grana\Desktop\Fakultet\Druga godina\Projektni-zadatak---FMSI\FMSIProjektni\obj\Debug\net6.0\FMSIProjektni.genruntimeconfig.cache
 C:\Users\grana\Desktop\Fakultet\Druga godina\Projektni-zadatak---FMSI\FMSIProjektni\obj\Debug\net6.0\ref\FMSIProjektni.dll
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak novi\Projektni-zadatak---FMSI\FMSIProjektni\obj\Debug\net6.0\FMSIProjektni.csproj.AssemblyReference.cache
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak novi\Projektni-zadatak---FMSI\FMSIProjektni\obj\Debug\net6.0\FMSIProjektni.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak novi\Projektni-zadatak---FMSI\FMSIProjektni\obj\Debug\net6.0\FMSIProjektni.AssemblyInfoInputs.cache
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak novi\Projektni-zadatak---FMSI\FMSIProjektni\obj\Debug\net6.0\FMSIProjektni.AssemblyInfo.cs
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak novi\Projektni-zadatak---FMSI\FMSIProjektni\obj\Debug\net6.0\FMSIProjektni.csproj.CoreCompileInputs.cache
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak novi\Projektni-zadatak---FMSI\FMSIProjektni\obj\Debug\net6.0\FMSIProjektni.dll
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak novi\Projektni-zadatak---FMSI\FMSIProjektni\obj\Debug\net6.0\refint\FMSIProjektni.dll
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak novi\Projektni-zadatak---FMSI\FMSIProjektni\obj\Debug\net6.0\FMSIProjektni.pdb
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak novi\Projektni-zadatak---FMSI\FMSIProjektni\bin\Debug\net6.0\FMSIProjektni.exe
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak novi\Projektni-zadatak---FMSI\FMSIProjektni\bin\Debug\net6.0\FMSIProjektni.deps.json
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak novi\Projektni-zadatak---FMSI\FMSIProjektni\bin\Debug\net6.0\FMSIProjektni.runtimeconfig.json
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak novi\Projektni-zadatak---FMSI\FMSIProjektni\bin\Debug\net6.0\FMSIProjektni.dll
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak novi\Projektni-zadatak---FMSI\FMSIProjektni\bin\Debug\net6.0\FMSIProjektni.pdb
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak novi\Projektni-zadatak---FMSI\FMSIProjektni\bin\Debug\net6.0\FMSILibrary.dll
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak novi\Projektni-zadatak---FMSI\FMSIProjektni\bin\Debug\net6.0\FMSILibrary.pdb
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak novi\Projektni-zadatak---FMSI\FMSIProjektni\obj\Debug\net6.0\FMSIProjektni.csproj.CopyComplete
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak novi\Projektni-zadatak---FMSI\FMSIProjektni\obj\Debug\net6.0\FMSIProjektni.genruntimeconfig.cache
+C:\Users\Nikola\Desktop\Fakultet\Druga godina\Formalne metode u softverskom inženjerstvu\Projektni zadatak novi\Projektni-zadatak---FMSI\FMSIProjektni\obj\Debug\net6.0\ref\FMSIProjektni.dll
