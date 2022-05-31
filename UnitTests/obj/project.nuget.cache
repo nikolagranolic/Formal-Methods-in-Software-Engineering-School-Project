@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ASNhaeKNm0IDsSJkP2RbjpuTlf/m+DmS6EBjTFaR9xnb9lU6pGBddC7blxO5icl6z9chN+4xK5iUHG3r2O9lkg==",
+  "dgSpecHash": "wcvL4X+kMD/58KQnVGnrhhQBMnm3BkQOlj2qq8hP99XBkMNoXBdXQyJx+ky/8Kj7WGQxrLRMgeOx3nSZa0tqoA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Nikola\\Desktop\\Fakultet\\Druga godina\\Formalne metode u softverskom inženjerstvu\\Projektni zadatak\\UnitTests\\UnitTests.csproj",
+  "projectFilePath": "C:\\Users\\Nikola\\Desktop\\Fakultet\\Druga godina\\Formalne metode u softverskom inženjerstvu\\Projektni zadatak novi\\Projektni-zadatak---FMSI\\UnitTests\\UnitTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Nikola\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\Nikola\\.nuget\\packages\\microsoft.codecoverage\\17.1.0\\microsoft.codecoverage.17.1.0.nupkg.sha512",
