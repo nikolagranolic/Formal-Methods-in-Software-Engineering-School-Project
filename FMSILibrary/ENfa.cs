@@ -192,6 +192,10 @@ namespace FMSILibrary {
             temp.Minimize();
             return temp.LongestWordLength();
         }
+        public bool IsLanguageFinite() {
+            Dfa dfa = this.ConvertToDfa();
+            return dfa.IsLanguageFinite();
+        }
 
         private HashSet<string> FromSetForSymbolToSet(HashSet<string> stateSet, char symbol) {
             HashSet<string> result = new();

@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\grana\\Desktop\\Fakultet\\Druga godina\\Projektni-zadatak---FMSI\\FMSILibrary\\FMSILibrary.csproj": {}
+    "C:\\Users\\Nikola\\Desktop\\Fakultet\\Druga godina\\Formalne metode u softverskom inženjerstvu\\Projektni zadatak\\FMSILibrary\\FMSILibrary.csproj": {}
   },
   "projects": {
-    "C:\\Users\\grana\\Desktop\\Fakultet\\Druga godina\\Projektni-zadatak---FMSI\\FMSILibrary\\FMSILibrary.csproj": {
+    "C:\\Users\\Nikola\\Desktop\\Fakultet\\Druga godina\\Formalne metode u softverskom inženjerstvu\\Projektni zadatak\\FMSILibrary\\FMSILibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\grana\\Desktop\\Fakultet\\Druga godina\\Projektni-zadatak---FMSI\\FMSILibrary\\FMSILibrary.csproj",
+        "projectUniqueName": "C:\\Users\\Nikola\\Desktop\\Fakultet\\Druga godina\\Formalne metode u softverskom inženjerstvu\\Projektni zadatak\\FMSILibrary\\FMSILibrary.csproj",
         "projectName": "FMSILibrary",
-        "projectPath": "C:\\Users\\grana\\Desktop\\Fakultet\\Druga godina\\Projektni-zadatak---FMSI\\FMSILibrary\\FMSILibrary.csproj",
-        "packagesPath": "C:\\Users\\grana\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\grana\\Desktop\\Fakultet\\Druga godina\\Projektni-zadatak---FMSI\\FMSILibrary\\obj\\",
+        "projectPath": "C:\\Users\\Nikola\\Desktop\\Fakultet\\Druga godina\\Formalne metode u softverskom inženjerstvu\\Projektni zadatak\\FMSILibrary\\FMSILibrary.csproj",
+        "packagesPath": "C:\\Users\\Nikola\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Nikola\\Desktop\\Fakultet\\Druga godina\\Formalne metode u softverskom inženjerstvu\\Projektni zadatak\\FMSILibrary\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\grana\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Nikola\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -57,7 +54,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
