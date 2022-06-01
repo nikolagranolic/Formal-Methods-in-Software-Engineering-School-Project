@@ -21,6 +21,22 @@ namespace FMSILibrary {
                 return finalStates.Count;
             }
         }
+        public HashSet<char> getAlphabet() {
+            return alphabet;
+        }
+        public string getStartState() {
+            return startState;
+        }
+        public HashSet<string> getAllStates() {
+            return allStates;
+        }
+        public HashSet<string> getFinalStates() {
+            return finalStates;
+        }
+        public Dictionary<(string, char), string> getDelta() {
+            return delta;
+        }
+
         //dodavanje prelaza iz stanja u stanje za odredjeni simbol (sve ovo se cuva u dictionary-ju)
         public void AddTransition(string currentState, char symbol, string nextState) {
             alphabet.Add(symbol);

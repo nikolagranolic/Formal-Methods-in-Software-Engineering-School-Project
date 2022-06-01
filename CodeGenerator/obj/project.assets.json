@@ -1,0 +1,90 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0": {
+      "FMSILibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/FMSILibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FMSILibrary.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "FMSILibrary/1.0.0": {
+      "type": "project",
+      "path": "../FMSILibrary/FMSILibrary.csproj",
+      "msbuildProject": "../FMSILibrary/FMSILibrary.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0": [
+      "FMSILibrary >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Nikola\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\Nikola\\Desktop\\Fakultet\\Druga godina\\Formalne metode u softverskom inženjerstvu\\Projektni zadatak novi\\Projektni-zadatak---FMSI\\CodeGenerator\\CodeGenerator.csproj",
+      "projectName": "CodeGenerator",
+      "projectPath": "C:\\Users\\Nikola\\Desktop\\Fakultet\\Druga godina\\Formalne metode u softverskom inženjerstvu\\Projektni zadatak novi\\Projektni-zadatak---FMSI\\CodeGenerator\\CodeGenerator.csproj",
+      "packagesPath": "C:\\Users\\Nikola\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Nikola\\Desktop\\Fakultet\\Druga godina\\Formalne metode u softverskom inženjerstvu\\Projektni zadatak novi\\Projektni-zadatak---FMSI\\CodeGenerator\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\Nikola\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "projectReferences": {
+            "C:\\Users\\Nikola\\Desktop\\Fakultet\\Druga godina\\Formalne metode u softverskom inženjerstvu\\Projektni zadatak novi\\Projektni-zadatak---FMSI\\FMSILibrary\\FMSILibrary.csproj": {
+              "projectPath": "C:\\Users\\Nikola\\Desktop\\Fakultet\\Druga godina\\Formalne metode u softverskom inženjerstvu\\Projektni zadatak novi\\Projektni-zadatak---FMSI\\FMSILibrary\\FMSILibrary.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net6.0": {
+        "targetAlias": "net6.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

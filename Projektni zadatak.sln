@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMSILibrary", "FMSILibrary\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMSIProjektni", "FMSIProjektni\FMSIProjektni.csproj", "{6ABEE99A-564C-4EE1-8929-6E7C8F78E1A7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGenerator", "CodeGenerator\CodeGenerator.csproj", "{DB3013F8-D205-45A4-A5D2-9693710A2C36}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{6ABEE99A-564C-4EE1-8929-6E7C8F78E1A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6ABEE99A-564C-4EE1-8929-6E7C8F78E1A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6ABEE99A-564C-4EE1-8929-6E7C8F78E1A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB3013F8-D205-45A4-A5D2-9693710A2C36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB3013F8-D205-45A4-A5D2-9693710A2C36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB3013F8-D205-45A4-A5D2-9693710A2C36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB3013F8-D205-45A4-A5D2-9693710A2C36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

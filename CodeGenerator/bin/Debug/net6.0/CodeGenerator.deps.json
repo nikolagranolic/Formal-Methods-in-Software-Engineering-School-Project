@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "CodeGenerator/1.0.0": {
+        "dependencies": {
+          "FMSILibrary": "1.0.0"
+        },
+        "runtime": {
+          "CodeGenerator.dll": {}
+        }
+      },
+      "FMSILibrary/1.0.0": {
+        "runtime": {
+          "FMSILibrary.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CodeGenerator/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FMSILibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
