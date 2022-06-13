@@ -2,7 +2,7 @@ namespace FMSILibrary {
     public class Equivalence {
         public static bool AreEquivalent(Dfa m1, Dfa m2) {
             Dfa temp = Dfa.Union(Dfa.Intersection(m1, Dfa.Complement(m2)), Dfa.Intersection(m2, Dfa.Complement(m1)));
-            temp.Minimize();
+            //temp.Minimize();
             if(temp.FinalStates == 0)
                 return true;
             else

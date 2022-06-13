@@ -6,10 +6,12 @@ class CodeGenerator {
     Dfa dfaFromSpecification = new();
 
     public CodeGenerator(string sourceFile) {
+        // parsiranje, tj. citanje specifikacije i formiranje DFA za koji ce kasnije biti generisan kod
         Dfa dfa = new();
         int counter = 0;
         int irregularLinesCounter = 0;
         string[] lines = System.IO.File.ReadAllLines(sourceFile);
+
         if(lines.Length < 2)
             throw new Exception("Fajl prazan ili ne sadrzi dovoljno linija! Obavezne linije:\n1. linija = \"[vrsta reprezentacije jezika],[stringovi],...\"\n2. linija = \"[pocetno stanje];[finalna stanja],...\" u slucaju automata ili string u slucaju regexa");
         
@@ -80,7 +82,8 @@ class CodeGenerator {
             } 
         }
         else throw new Exception("Neispravna specifikacija!");
-
+        
+        // kada smo utvrdili da je specifikacija ispravna generise se kod na osnovu automata koji je kreiran po specifikaciji
         generatedCode += "using System;\n" +
                              "class GeneratedDfa {\n";
         generatedCode += "    public bool StartSimulation(String testString, Reaction beginning, Reaction end, " + TransitionReactionsArgument() + ") {\n";
@@ -115,9 +118,6 @@ class CodeGenerator {
         generatedCode += "         }\n";
         generatedCode += "         return isStringInLanguage;\n";
         generatedCode += "    }\n\n";
-        generatedCode += "    static public void Main(string[] args) {\n";
-        generatedCode += "        \n";
-        generatedCode += "    }\n";
         generatedCode += "}\n\n";
         generatedCode += "class Reaction {\n";
         generatedCode += "    private List<Action<string>> reactions = new();\n";
@@ -131,10 +131,9 @@ class CodeGenerator {
         generatedCode += "    }\n";
         generatedCode += "}\n";
 
-        Console.WriteLine(generatedCode);
     }
 
-
+    // pomocna funkcija za pravljenje potpisa metode StartSimulation u generisanom kodu
     private string TransitionReactionsArgument() {
         string result = "";
         char[] alphabet = new char[dfaFromSpecification.getAlphabet().Count];
@@ -147,19 +146,25 @@ class CodeGenerator {
         return result;
     }
     
-    static public void Main(string[] args) {
-        CodeGenerator codeGenerator = new CodeGenerator("specification.txt");
-        //Console.WriteLine("Hello");
+    public void WriteCodeToFile(string fileName) {
+        File.WriteAllTextAsync(fileName, this.generatedCode);
+    }
 
-        // Reaction start = new();
-        // start.AddReaction((string a) => Console.WriteLine(a + "START"));
-        // Reaction end = new();
-        // end.AddReaction((string a) => Console.WriteLine(a + "END"));
-        // Reaction transition1 = new();
-        // transition1.AddReaction((string a) => Console.WriteLine(a + "transition1"));
-        // Reaction transition0 = new();
-        // transition0.AddReaction((string a) => Console.WriteLine(a + "transition0"));
-        // GeneratedDfa test = new();
-        // Console.WriteLine(test.StartSimulation("1011", start, end, transition1, transition0));
+    static public void Main(string[] args) {
+        //CodeGenerator codeGenerator = new CodeGenerator("specification.txt");
+        
+        //codeGenerator.WriteCodeToFile("generated_dfa.cs");
+
+        // pravljenje nekih testnih reakcija koje ce biti izvrsene tokom izvrsavanja generisanog koda
+        Reaction start = new();
+        start.AddReaction((string a) => Console.WriteLine(a + "START"));
+        Reaction end = new();
+        end.AddReaction((string a) => Console.WriteLine(a + "END"));
+        Reaction transition1 = new();
+        transition1.AddReaction((string a) => Console.WriteLine(a + "transition1"));
+        Reaction transition0 = new();
+        transition0.AddReaction((string a) => Console.WriteLine(a + "transition0"));
+        GeneratedDfa test = new();
+        Console.WriteLine(test.StartSimulation("1011", start, end, transition1, transition0));
     }
 }

@@ -18,6 +18,8 @@ namespace FMSILibrary {
         private HashSet<string> allStates = new();
         private HashSet<char> alphabet = new();
         static int helperID = 0;
+
+        // O(n) -> n - broj stanja u skupu nextState
         public void AddTransition(string currentState, char symbol, HashSet<string> nextState) {
             if(symbol != '$')
                     alphabet.Add(symbol);
@@ -26,13 +28,17 @@ namespace FMSILibrary {
             foreach(string state in nextState)
                 allStates.Add(state);
         }
+
         public void SetStartState(string state) {
             startState.Add(state);
         }
+
         public void AddFinalState(string state) {
             finalStates.Add(state);
-            allStates.Add(state); // ako bude neka greska moguce da je do ovoga
+            allStates.Add(state);
         }
+
+        // O(n^3)
         public bool Accepts(string input) {
             currentState = EpsilonClosure(startState);    
             foreach(var symbol in input) {
@@ -53,6 +59,8 @@ namespace FMSILibrary {
             return currentState.Count > 0 ? true : false;
         }
 
+        // metoda vraca skup koji sadrzi epsilon closure od stanja koje je proslijedjeno kao argument metode
+        // O(n^2)
         public HashSet<string> EpsilonClosure(HashSet<string> startState) {
             HashSet<string> eClosure = new();
             Queue<string> queue = new();
@@ -76,6 +84,9 @@ namespace FMSILibrary {
             }
             return eClosure;
         }
+
+        // pocinjemo od pocetnog stanja i naredne skupove stanja dodajemo u red pa onda ih skidamo iz reda pa ponavljamo
+        // O(n^4) (zbog minimizacije)
         public Dfa ConvertToDfa() {
             Dfa dfa = new();
             Queue<HashSet<string>> queue = new();
@@ -106,8 +117,11 @@ namespace FMSILibrary {
             dfa.Minimize();
             return dfa;
         }
+
+        // dodajemo jedno novo pocetno stanje i iz njega epsilon prelaze u pocetna stanja automata m1 i m2
+        // O(n)
         public static ENfa Union(ENfa m1, ENfa m2) {
-            //return Dfa.Union(m1.ConvertToDfa(), m2.ConvertToDfa()).ConvertToENfa();
+            //return Dfa.Union(m1.ConvertToDfa(), m2.ConvertToDfa()).ConvertToENfa(); // ovo bi bilo O(n^2)
             ENfa result = new();
             foreach(var entry in m1.delta) {
                 result.AddTransition(entry.Key.Item1, entry.Key.Item2, entry.Value);
@@ -128,6 +142,9 @@ namespace FMSILibrary {
                 result.AddFinalState(state);
             return result;
         }
+
+        // finalna stanja m1 nisu finalna vec od njih dodamo epsilon prelaze u pocetno stanje automata m2
+        // O(n^2)
         public static ENfa Concatenation(ENfa m1, ENfa m2) {
             ENfa result = new();
             foreach(var entry in m1.delta) {
@@ -157,6 +174,9 @@ namespace FMSILibrary {
                 result.AddFinalState(state);
             return result;
         }
+
+        // dodavanje novog pocetnog stanja i iz njega epsilon prelaz u staro pocetno stanje(koje je sada i finalno), i iz finalnih stanja starih epsilon prelaz u staro pocetno stanje
+        // O(n)
         public static ENfa Star(ENfa m1) {
             ENfa result = new(m1);
             string temp = "";
@@ -169,34 +189,44 @@ namespace FMSILibrary {
                 result.AddTransition(state, '$', new HashSet<string>{temp});
             return result; 
         }
+
+        // O(n^2)
         public static ENfa Complement(ENfa m1) {
             return Dfa.Complement(m1.ConvertToDfa()).ConvertToENfa();
         }
 
+        // O(n^2)
         public static ENfa Intersection(ENfa m1, ENfa m2) {
             return Dfa.Intersection(m1.ConvertToDfa(), m2.ConvertToDfa()).ConvertToENfa();
         }
 
+        // O(n^2)
         public static ENfa Difference(ENfa m1, ENfa m2) {
             return Dfa.Difference(m1.ConvertToDfa(), m2.ConvertToDfa()).ConvertToENfa();
         }
         
+        // O(n^4)
         public int ShortestWordLength() {
             Dfa temp = ConvertToDfa();
             temp.Minimize();
             return temp.ShortestWordLength();
         }
 
+        // O(n^4)
         public int LongestWordLength() {
             Dfa temp = ConvertToDfa();
             temp.Minimize();
             return temp.LongestWordLength();
         }
+
+        // O(n^4)
         public bool IsLanguageFinite() {
             Dfa dfa = this.ConvertToDfa();
             return dfa.IsLanguageFinite();
         }
 
+        // imam neki skup, i vracam skup svih stanja u koja se moze otici kada se elementima pocetnog skupa da simbol neki
+        // O(n^2)
         private HashSet<string> FromSetForSymbolToSet(HashSet<string> stateSet, char symbol) {
             HashSet<string> result = new();
             foreach(string state in stateSet) {
@@ -208,6 +238,9 @@ namespace FMSILibrary {
             }
             return result;
         }
+
+        // pravi string od skupa stanja
+        // O(n)
         private String FromSetToString(HashSet<string> set) {
             String result = "";
             foreach(var str in set)
