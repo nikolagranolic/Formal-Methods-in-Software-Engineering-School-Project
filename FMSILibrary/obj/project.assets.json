@@ -8,19 +8,23 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Nikola\\.nuget\\packages\\": {}
+    "C:\\Users\\grana\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Nikola\\Desktop\\Fakultet\\Druga godina\\Formalne metode u softverskom inženjerstvu\\Projektni zadatak novi\\Projektni-zadatak---FMSI\\FMSILibrary\\FMSILibrary.csproj",
+      "projectUniqueName": "C:\\Users\\grana\\Desktop\\Fakultet\\Druga godina\\Projektni-zadatak---FMSI\\FMSILibrary\\FMSILibrary.csproj",
       "projectName": "FMSILibrary",
-      "projectPath": "C:\\Users\\Nikola\\Desktop\\Fakultet\\Druga godina\\Formalne metode u softverskom inženjerstvu\\Projektni zadatak novi\\Projektni-zadatak---FMSI\\FMSILibrary\\FMSILibrary.csproj",
-      "packagesPath": "C:\\Users\\Nikola\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Nikola\\Desktop\\Fakultet\\Druga godina\\Formalne metode u softverskom inženjerstvu\\Projektni zadatak novi\\Projektni-zadatak---FMSI\\FMSILibrary\\obj\\",
+      "projectPath": "C:\\Users\\grana\\Desktop\\Fakultet\\Druga godina\\Projektni-zadatak---FMSI\\FMSILibrary\\FMSILibrary.csproj",
+      "packagesPath": "C:\\Users\\grana\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\grana\\Desktop\\Fakultet\\Druga godina\\Projektni-zadatak---FMSI\\FMSILibrary\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Nikola\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\grana\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -60,7 +64,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
