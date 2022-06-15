@@ -348,7 +348,7 @@ namespace FMSILibrary {
             return ShortestWord(queue);
         }
 
-        // O(v + e)
+        // O(n^n)
         public int LongestWordLength() {
             if(!IsLanguageFinite())
                 return -1;
@@ -360,7 +360,7 @@ namespace FMSILibrary {
             }
         }
 
-        // O(v + e)
+        // O(n*(v + e))
         public bool IsLanguageFinite() {
             //Dfa temp = new(this);
             //Minimize();
@@ -433,7 +433,7 @@ namespace FMSILibrary {
             return ShortestWord(queue, length + 1);
         }
 
-        // O(v + e) -> v - broj stanja, e - broj prelaza
+        // O(n^n)
         private int LongestWord(string state, Stack<string> stack, HashSet<string> visited, ref int count, int length = 0) {
             visited.Add(state);
             stack.Push(state);
